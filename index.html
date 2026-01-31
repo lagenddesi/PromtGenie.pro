@@ -3,7 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptMaster Pro | AI Engine</title>
+    
+    <!-- PRIMARY SEO TAGS -->
+    <title>PromptMaster Pro | Best Free AI Prompt Generator for ChatGPT & Midjourney</title>
+    <meta name="description" content="Generate high-quality AI prompts for ChatGPT, Midjourney, Coding, and Marketing. Convert simple ideas into professional AI instructions with our free prompt builder.">
+    <meta name="keywords" content="AI Prompt Generator, Best ChatGPT Prompts, Midjourney Prompt Helper, Free AI Prompts, AI Art Prompts, Coding Prompt Generator, Prompt Engineering Tool">
+    <meta name="author" content="PromptMaster Pro">
+    <meta name="robots" content="index, follow">
+
+    <!-- OPEN GRAPH (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:title" content="PromptMaster Pro | Professional AI Prompt Engineer">
+    <meta property="og:description" content="Stop wasting time with bad AI results. Generate master-level prompts for ChatGPT and Midjourney instantly.">
+    <meta property="og:image" content="https://prompt-genie-pro.vercel.app/og-image.jpg"> <!-- Link to a preview image if you have one -->
+    <meta property="og:url" content="https://prompt-genie-pro.vercel.app">
+    <meta property="og:type" content="website">
+
+    <!-- CANONICAL TAG -->
+    <link rel="canonical" href="https://prompt-genie-pro.vercel.app" />
+
+    <!-- SCHEMA MARKUP (Google Rich Snippets) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "PromptMaster Pro",
+      "url": "https://promt-genie-pro.vercel.app/",
+      "applicationCategory": "Utility",
+      "operatingSystem": "All",
+      "description": "Professional AI Prompt Generator for ChatGPT, Midjourney, Coding, and Marketing.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     
@@ -12,47 +47,47 @@
         .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
         .active-card { border: 2px solid #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; }
         
-        /* AD SHIELD: Redirects rokne ke liye */
+        /* AD SHIELD & RESPONSIVE SCALE */
         .ad-wrapper {
             width: 100%;
             max-width: 728px;
             height: 90px;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto 2.5rem auto;
             position: relative;
             overflow: hidden;
             display: flex;
             justify-content: center;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
         }
 
-        /* Mobile par ad ko scale (chota) karne ke liye CSS */
         @media (max-width: 728px) {
-            .ad-wrapper iframe {
-                transform: scale(1.0); /* Mobile par size chota karega */
-                transform-origin: center top;
-            }
-            .ad-wrapper { height: 50px; } /* Mobile height adjust */
+            .ad-wrapper iframe { transform: scale(0.45); transform-origin: center top; }
+            .ad-wrapper { height: 50px; }
         }
 
-        #adModal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; }
+        #adModal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 20px; }
+        .seo-content h2 { color: #fff; font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .seo-content p { margin-bottom: 1rem; line-height: 1.6; }
     </style>
 </head>
 <body>
 
     <!-- REWARD MODAL -->
     <div id="adModal">
-        <div class="glass p-10 rounded-[2.5rem] max-w-md w-full text-center border-blue-500/30">
-            <h2 class="text-2xl font-bold mb-4 text-blue-400">Limit Reached!</h2>
-            <p class="text-slate-400 mb-8">Daily 10 free prompts used. Click to unlock **10 more** for this session.</p>
-            <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold text-lg mb-4 shadow-lg shadow-blue-600/30 transition">
-                WATCH AD & UNLOCK ✨
+        <div class="glass p-10 rounded-[2.5rem] max-w-md w-full text-center border-blue-500/30 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-blue-400">Daily Limit Reached!</h2>
+            <p class="text-slate-400 mb-8">You have used your 10 free prompts. Click below to watch a quick ad and unlock **10 MORE** prompts instantly.</p>
+            <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold text-lg mb-4 shadow-xl shadow-blue-600/30 transition">
+                UNLOCK 10 PROMPTS ✨
             </button>
-            <button onclick="closeModal()" class="text-slate-500 text-sm">Maybe Later</button>
+            <button onclick="closeModal()" class="text-slate-500 text-sm hover:text-white transition">Maybe Later</button>
         </div>
     </div>
 
     <!-- NAVBAR -->
-    <nav class="border-b border-white/5 p-4 flex justify-between items-center bg-slate-950/80 sticky top-0 z-50">
-        <div class="text-xl font-black italic tracking-tight">PromptMaster<span class="text-blue-500">.pro</span></div>
+    <nav class="border-b border-white/5 p-4 flex justify-between items-center bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="text-xl font-black italic tracking-tighter">PromptMaster<span class="text-blue-500">.pro</span></div>
         <div class="text-xs bg-slate-900 px-4 py-2 rounded-full border border-white/10 font-bold">
             <span id="activeCat">ChatGPT</span>: <span id="remCount" class="text-blue-500">10</span> Left
         </div>
@@ -82,39 +117,60 @@
             </iframe>
         </div>
 
-        <h1 class="text-4xl md:text-6xl font-extrabold text-center mb-10 leading-none tracking-tighter">AI Prompt <span class="text-blue-500">Engineer</span></h1>
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tighter leading-none">
+                AI Prompt <span class="text-blue-500">Master Builder</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-xl mx-auto">The ultimate professional tool for generating high-quality AI prompts for ChatGPT, Midjourney, and Coding.</p>
+        </header>
 
         <!-- CATEGORIES -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
             <div onclick="setCat('chatgpt')" id="card-chatgpt" class="glass p-5 rounded-2xl cursor-pointer active-card text-center font-bold">ChatGPT</div>
-            <div onclick="setCat('midjourney')" id="card-midjourney" class="glass p-5 rounded-2xl cursor-pointer text-center font-bold">Images</div>
+            <div onclick="setCat('midjourney')" id="card-midjourney" class="glass p-5 rounded-2xl cursor-pointer text-center font-bold">Art Art</div>
             <div onclick="setCat('coding')" id="card-coding" class="glass p-5 rounded-2xl cursor-pointer text-center font-bold">Coding</div>
             <div onclick="setCat('marketing')" id="card-marketing" class="glass p-5 rounded-2xl cursor-pointer text-center font-bold">Marketing</div>
         </div>
 
         <!-- INPUT BOX -->
-        <div class="glass p-2 rounded-[2.5rem] overflow-hidden mb-10 shadow-2xl">
-            <textarea id="userInput" placeholder="What's your idea?" class="w-full h-44 bg-transparent p-8 text-xl outline-none resize-none placeholder:text-slate-800"></textarea>
+        <div class="glass p-2 rounded-[2.5rem] overflow-hidden mb-12 shadow-2xl">
+            <textarea id="userInput" placeholder="Enter your idea (e.g., A futuristic city in 2050)..." class="w-full h-44 bg-transparent p-8 text-xl outline-none resize-none placeholder:text-slate-800"></textarea>
             <div class="p-4 bg-white/5 border-t border-white/5 flex justify-end">
-                <button onclick="generate()" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-3 rounded-2xl font-bold transition shadow-lg shadow-blue-600/20">
-                    Generate Prompt ✨
+                <button onclick="generate()" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-2xl font-bold transition shadow-lg shadow-blue-600/20 active:scale-95">
+                    Generate Expert Prompt ✨
                 </button>
             </div>
         </div>
 
         <!-- RESULT SECTION -->
-        <div id="resultBox" class="hidden glass p-8 rounded-[2rem] border-blue-500/20 shadow-2xl animate-pulse">
-            <div id="output" class="text-lg text-slate-200 italic leading-relaxed mb-6"></div>
-            <button onclick="copyText()" class="text-blue-500 font-bold text-sm uppercase tracking-widest">Copy Master Prompt</button>
+        <div id="resultBox" class="hidden glass p-10 rounded-[2.5rem] border-blue-500/20 shadow-2xl mb-20">
+            <div id="output" class="text-xl text-slate-200 italic leading-relaxed mb-6"></div>
+            <button onclick="copyText()" class="text-blue-500 font-bold text-sm uppercase tracking-widest hover:text-blue-400">Copy Result</button>
         </div>
+
+        <!-- SEO TEXT CONTENT SECTION (For Google Crawlers) -->
+        <article class="seo-content border-t border-white/5 pt-16 text-slate-400">
+            <h2>Why use PromptMaster Pro AI Prompt Generator?</h2>
+            <p>Our <b>Free AI Prompt Generator</b> is engineered to help creators, marketers, and developers get the best out of artificial intelligence. Whether you are looking for <b>high-quality ChatGPT prompts</b> or <b>professional Midjourney art prompts</b>, our tool provides a structured framework that AI models understand perfectly.</p>
+            
+            <h2>Master Prompt Engineering for Free</h2>
+            <p>Prompt engineering is the key to unlocking AI's potential. PromptMaster Pro converts your simple sentences into complex, descriptive, and technical instructions. We support <b>AI art generation</b>, <b>clean code prompts</b>, and <b>persuasive marketing copy</b>. Avoid the "bad output" trap and start using our professional AI prompt builder today.</p>
+            
+            <p>Targeted Keywords: <i>Midjourney prompt helper, Free AI content tool, ChatGPT marketing prompts, Coding prompt optimizer, Best AI prompt engineering site.</i></p>
+        </article>
+
     </main>
 
+    <footer class="py-12 text-center text-slate-600 text-xs border-t border-white/5">
+        <p>© 2024 PromptMaster Pro - The Most Powerful Free AI Prompt Builder.</p>
+    </footer>
+
     <script>
-        // APNA DIRECT LINK YAHAN PASTE KAREIN
+        // CONFIG: Replace with your actual direct link
         const MY_DIRECT_LINK = "https://www.effectivegatecpm.com/hx9eqwb2?key=eca9ef1a642f0854c04b34a426523a34";
 
         let currentCat = 'chatgpt';
-        let userLimits = JSON.parse(localStorage.getItem('user_limits_vfinal')) || {
+        let userLimits = JSON.parse(localStorage.getItem('user_limits_final_seo')) || {
             date: new Date().toLocaleDateString(),
             chatgpt: 0, midjourney: 0, coding: 0, marketing: 0
         };
@@ -135,24 +191,35 @@
             const input = document.getElementById('userInput').value;
             if(!input) return;
 
-            document.getElementById('output').innerText = `[EXPERT ${currentCat.toUpperCase()}]: ${input}. (Highly optimized with technical frameworks and professional personas for AI excellence)`;
+            let final = "";
+            if(currentCat === 'midjourney') {
+                final = `[IMAGE PROMPT]: Hyper-realistic cinematic photography of ${input}, shot on 35mm lens, f/1.8, cinematic lighting, 8k resolution, Unreal Engine 5 render, highly detailed textures --v 6.0 --ar 16:9`;
+            } else {
+                final = `[EXPERT ${currentCat.toUpperCase()} ENGINEER]: Act as a senior specialist. Task: ${input}. Instructions: Provide a highly structured, analytical, and professional response using the latest industry standards.`;
+            }
+
+            document.getElementById('output').innerText = final;
             document.getElementById('resultBox').classList.remove('hidden');
 
             userLimits[currentCat]++;
-            localStorage.setItem('user_limits_vfinal', JSON.stringify(userLimits));
+            localStorage.setItem('user_limits_final_seo', JSON.stringify(userLimits));
             document.getElementById('remCount').innerText = 10 - userLimits[currentCat];
+            window.scrollTo({top: document.getElementById('resultBox').offsetTop - 50, behavior: 'smooth'});
         }
 
         function watchAdToUnlock() {
             window.open(MY_DIRECT_LINK, '_blank'); 
             userLimits[currentCat] = 0;
-            localStorage.setItem('user_limits_vfinal', JSON.stringify(userLimits));
+            localStorage.setItem('user_limits_final_seo', JSON.stringify(userLimits));
             document.getElementById('adModal').style.display = 'none';
             document.getElementById('remCount').innerText = 10;
         }
 
         function closeModal() { document.getElementById('adModal').style.display = 'none'; }
         function copyText() { navigator.clipboard.writeText(document.getElementById('output').innerText); alert("Prompt Copied!"); }
+        
+        // Init UI
+        document.getElementById('remCount').innerText = 10 - userLimits[currentCat];
     </script>
 </body>
 </html>
