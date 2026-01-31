@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://promt-genie-pro.vercel.app/sitemap.xml
