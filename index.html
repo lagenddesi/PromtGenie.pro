@@ -3,212 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptMaster Pro | AI Engine with Ad-Rewards</title>
+    <title>PromptMaster Pro | AI Engine</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- [ADS]: SOCIAL BAR KA CODE YAHA PASTE KAREIN (ID: 28517692 wala code) -->
+    <!-- Adsterra se Social Bar ka poora script copy karke niche wali line ke bad paste karein -->
+    <script> /* https://www.effectivegatecpm.com/uudaj976g?key=1cf5a86930cbbd8cd46faec1c5756111 */ </script>
+
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; }
-        .glass-card { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .active-card { border-color: #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
-        .gradient-bg { background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent), radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.1), transparent); }
-        
-        /* Modal Style */
-        #adModal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; color: white; }
+        .glass { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .active-card { border-color: #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; }
+        #adModal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 20px; }
     </style>
 </head>
-<body class="text-slate-100 min-h-screen gradient-bg">
+<body>
 
-    <!-- Adsterra Social Bar Script Place (Copy paste your script here) -->
-    <!-- <script type='text/javascript' src='//your-adsterra-script-here.js'></script> -->
-
-    <!-- Modal for Ad Reward -->
+    <!-- Modal for Ad Rewards -->
     <div id="adModal">
-        <div class="glass-card p-10 rounded-[3rem] max-w-md w-full text-center border-blue-500/30">
-            <div class="w-20 h-20 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div>
-            <h2 class="text-2xl font-bold mb-2">Limit Reached!</h2>
-            <p class="text-slate-400 mb-8">You've used all 10 free prompts for this category today. Watch a quick ad to unlock **10 MORE** prompts!</p>
-            <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-bold text-lg mb-4 shadow-xl shadow-blue-600/20 transition">
-                Watch Ad & Unlock 10 ✨
+        <div class="glass p-10 rounded-[2rem] max-w-md w-full text-center">
+            <h2 class="text-2xl font-bold mb-4 text-blue-400">Limit Reached!</h2>
+            <p class="text-slate-400 mb-6">Aapki daily 10 free prompts khatam ho gayi hain. Ek Ad dekhein aur **10 prompts** aur payein!</p>
+            
+            <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold text-lg mb-4 shadow-lg shadow-blue-600/30">
+                AD DEKHEIN AUR UNLOCK KAREIN ✨
             </button>
-            <button onclick="closeModal()" class="text-slate-500 text-sm font-medium hover:text-white">Maybe Later</button>
+            
+            <button onclick="closeModal()" class="text-slate-500 text-sm">Close</button>
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                </div>
-                <span class="text-2xl font-black tracking-tighter">PromptMaster<span class="text-blue-500">.pro</span></span>
-            </div>
-            <div id="limitDisplay" class="text-xs font-bold text-slate-400 bg-slate-900 px-4 py-2 rounded-full border border-white/5">
-                Daily Limit: <span id="remainingPrompts" class="text-blue-500">10/10</span> left
-            </div>
+    <!-- Top Banner -->
+    <nav class="border-b border-white/5 p-4 flex justify-between items-center bg-slate-950/50 sticky top-0 z-50">
+        <div class="text-xl font-black tracking-tighter">PromptMaster<span class="text-blue-500">.pro</span></div>
+        <div id="status" class="text-xs bg-slate-900 px-4 py-2 rounded-full border border-white/10 font-bold">
+            <span id="activeCatDisplay">ChatGPT</span>: <span id="remCount" class="text-blue-500 text-sm">10</span> Left
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 pt-12 pb-24">
-        <!-- Banner Adsterra Top Placeholder -->
-        <div class="w-full h-24 bg-white/5 border border-white/5 rounded-2xl mb-12 flex items-center justify-center italic text-slate-700">
-            Adsterra Banner Ad Space (728x90)
+    <main class="max-w-6xl mx-auto px-6 py-10">
+        
+        <!-- [ADS]: TOP BANNER AD YAHA LAGAYEIN (ID: 28517684 wala code) -->
+        <div class="flex justify-center mb-10 overflow-hidden">
+            <!-- Adsterra se Banner Ad ka script copy karein aur yahan paste karein -->
         </div>
 
-        <header class="text-center mb-16">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-none">Power Up Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">AI Experience</span></h1>
-        </header>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-center mb-12">Professional <span class="text-blue-500">AI Prompt</span> Generator</h1>
 
-        <!-- Model Selection -->
-        <section class="grid md:grid-cols-4 gap-6 mb-12">
-            <div onclick="selectModel('chatgpt')" id="card-chatgpt" class="glass-card p-6 rounded-3xl cursor-pointer hover:border-white/20 transition-all active-card">
-                <h3 class="font-bold text-lg mb-1">ChatGPT-4</h3>
-                <p id="count-chatgpt" class="text-[10px] text-blue-500 font-bold uppercase tracking-widest mt-2">10 Left</p>
+        <!-- Category Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div onclick="setCat('chatgpt')" id="card-chatgpt" class="glass p-6 rounded-2xl cursor-pointer active-card">
+                <h3 class="font-bold">ChatGPT</h3>
+                <p class="text-[10px] text-slate-500 uppercase mt-2">10 Daily Free</p>
             </div>
-            <div onclick="selectModel('midjourney')" id="card-midjourney" class="glass-card p-6 rounded-3xl cursor-pointer hover:border-white/20 transition-all">
-                <h3 class="font-bold text-lg mb-1">Midjourney Art</h3>
-                <p id="count-midjourney" class="text-[10px] text-blue-500 font-bold uppercase tracking-widest mt-2">10 Left</p>
+            <div onclick="setCat('midjourney')" id="card-midjourney" class="glass p-6 rounded-2xl cursor-pointer">
+                <h3 class="font-bold">Midjourney</h3>
+                <p class="text-[10px] text-slate-500 uppercase mt-2">10 Daily Free</p>
             </div>
-            <div onclick="selectModel('coding')" id="card-coding" class="glass-card p-6 rounded-3xl cursor-pointer hover:border-white/20 transition-all">
-                <h3 class="font-bold text-lg mb-1">Expert Coder</h3>
-                <p id="count-coding" class="text-[10px] text-blue-500 font-bold uppercase tracking-widest mt-2">10 Left</p>
+            <div onclick="setCat('coding')" id="card-coding" class="glass p-6 rounded-2xl cursor-pointer">
+                <h3 class="font-bold">Expert Coder</h3>
+                <p class="text-[10px] text-slate-500 uppercase mt-2">10 Daily Free</p>
             </div>
-            <div onclick="selectModel('marketing')" id="card-marketing" class="glass-card p-6 rounded-3xl cursor-pointer hover:border-white/20 transition-all">
-                <h3 class="font-bold text-lg mb-1">Marketing Pro</h3>
-                <p id="count-marketing" class="text-[10px] text-blue-500 font-bold uppercase tracking-widest mt-2">10 Left</p>
-            </div>
-        </section>
-
-        <div class="grid lg:grid-cols-3 gap-8">
-            <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                <div class="glass-card p-8 rounded-[2rem]">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3 block">Tone</label>
-                    <select id="tone" class="w-full bg-slate-900 border border-white/10 rounded-xl p-3 outline-none mb-6">
-                        <option>Highly Professional</option>
-                        <option>Creative & Playful</option>
-                    </select>
-                    <!-- Small Adsterra Ad Here -->
-                    <div class="w-full h-60 bg-white/5 border border-white/5 rounded-2xl flex items-center justify-center italic text-slate-800 text-xs">Adsterra (300x250)</div>
-                </div>
-            </div>
-
-            <!-- Input/Output -->
-            <div class="lg:col-span-2 space-y-8">
-                <div class="glass-card p-1 rounded-[2.5rem] overflow-hidden">
-                    <textarea id="userInput" placeholder="Write your idea..." class="w-full h-56 bg-transparent border-none p-10 text-2xl outline-none placeholder:text-slate-800 resize-none"></textarea>
-                    <div class="p-6 bg-white/5 border-t border-white/5 flex justify-between items-center">
-                        <button onclick="buildPrompt()" class="w-full bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-bold transition flex items-center justify-center gap-3">
-                            Generate Master Prompt ✨
-                        </button>
-                    </div>
-                </div>
-
-                <div id="outputSection" class="hidden">
-                    <div class="glass-card p-10 rounded-[2.5rem] border-blue-500/20">
-                        <div id="finalPrompt" class="text-slate-200 text-xl leading-relaxed italic whitespace-pre-line"></div>
-                        <button onclick="copyResult()" class="mt-6 bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-xl text-sm transition">Copy to Clipboard</button>
-                    </div>
-                </div>
+            <div onclick="setCat('marketing')" id="card-marketing" class="glass p-6 rounded-2xl cursor-pointer">
+                <h3 class="font-bold">Marketing</h3>
+                <p class="text-[10px] text-slate-500 uppercase mt-2">10 Daily Free</p>
             </div>
         </div>
+
+        <!-- Input Area -->
+        <div class="glass p-2 rounded-[2rem] overflow-hidden mb-10">
+            <textarea id="userInput" placeholder="Write your simple idea here..." class="w-full h-48 bg-transparent p-8 text-xl outline-none resize-none"></textarea>
+            <div class="p-6 bg-white/5 border-t border-white/5">
+                <button onclick="generate()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold text-lg transition shadow-xl shadow-blue-600/20">
+                    GENERATE PROMPT ✨
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="resultBox" class="hidden glass p-8 rounded-[2rem] border-blue-500/30">
+            <div class="flex justify-between mb-4">
+                <span class="text-xs font-bold text-blue-500 uppercase tracking-widest">Optimized Prompt</span>
+                <button onclick="copyText()" class="text-sm text-slate-400 hover:text-white">Copy Result</button>
+            </div>
+            <div id="output" class="text-lg text-slate-200 italic leading-relaxed"></div>
+        </div>
+
     </main>
 
     <script>
-        // CONFIGURATION
-        const ADSTERRA_DIRECT_LINK = "https://www.highrevenuenetwork.com/your-direct-link-here"; // Replace with your Adsterra Direct Link
-        let activeModel = 'chatgpt';
-        
-        // LIMIT LOGIC
-        let userLimits = {
-            lastReset: new Date().toLocaleDateString(),
+        // -------------------------------------------------------------
+        // YAHA APNA ADSTERRA DIRECT LINK PASTE KAREIN
+        const DIRECT_LINK_URL = "https://www.highrevenuegate.com/example_link"; 
+        // -------------------------------------------------------------
+
+        let currentCat = 'chatgpt';
+        let userLimits = JSON.parse(localStorage.getItem('user_limits_v1')) || {
+            date: new Date().toLocaleDateString(),
             chatgpt: 0,
             midjourney: 0,
             coding: 0,
             marketing: 0
         };
 
-        // Load Limits from LocalStorage
-        function loadLimits() {
-            const saved = localStorage.getItem('prompt_master_limits');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                if (parsed.lastReset === new Date().toLocaleDateString()) {
-                    userLimits = parsed;
-                } else {
-                    saveLimits(); // It's a new day, keep default 0s but update date
-                }
-            }
-            updateUI();
+        // Reset limits if it's a new day
+        if(userLimits.date !== new Date().toLocaleDateString()) {
+            userLimits = { date: new Date().toLocaleDateString(), chatgpt:0, midjourney:0, coding:0, marketing:0 };
+            save();
         }
 
-        function saveLimits() {
-            localStorage.setItem('prompt_master_limits', JSON.stringify(userLimits));
-            updateUI();
-        }
-
-        function updateUI() {
-            document.getElementById('count-chatgpt').innerText = (10 - userLimits.chatgpt) + " Left";
-            document.getElementById('count-midjourney').innerText = (10 - userLimits.midjourney) + " Left";
-            document.getElementById('count-coding').innerText = (10 - userLimits.coding) + " Left";
-            document.getElementById('count-marketing').innerText = (10 - userLimits.marketing) + " Left";
-            
-            document.getElementById('remainingPrompts').innerText = (10 - userLimits[activeModel]) + "/10";
-        }
-
-        function selectModel(model) {
-            activeModel = model;
+        function setCat(cat) {
+            currentCat = cat;
             document.querySelectorAll('[id^="card-"]').forEach(c => c.classList.remove('active-card'));
-            document.getElementById('card-' + model).classList.add('active-card');
-            updateUI();
+            document.getElementById('card-' + cat).classList.add('active-card');
+            document.getElementById('activeCatDisplay').innerText = cat.toUpperCase();
+            updateCount();
         }
 
-        function buildPrompt() {
-            if (userLimits[activeModel] >= 10) {
+        function updateCount() {
+            document.getElementById('remCount').innerText = 10 - userLimits[currentCat];
+        }
+
+        function generate() {
+            if(userLimits[currentCat] >= 10) {
                 document.getElementById('adModal').style.display = 'flex';
                 return;
             }
 
             const input = document.getElementById('userInput').value;
-            if(!input) return alert("Please type something!");
+            if(!input) return alert("Write something first!");
 
-            // [PROMPT LOGIC SAME AS BEFORE]
-            let result = `[EXPERT ${activeModel.toUpperCase()} PROMPT]\n\nTask: ${input}\n\nFramework: Multi-layer analysis\nTone: ${document.getElementById('tone').value}\n\nInstructions: Provide highly detailed output with technical accuracy.`;
+            let prompt = "";
+            if(currentCat === 'chatgpt') prompt = "Act as an expert ChatGPT-4 engineer. Optimize this task: " + input + ". Provide a structured and logical response.";
+            else if(currentCat === 'midjourney') prompt = "A cinematic hyper-realistic shot of " + input + ", 8k, f/1.8, cinematic lighting, --v 6.0 --ar 16:9";
+            else if(currentCat === 'coding') prompt = "Write clean, modular code for: " + input + ". Follow best practices and include comments.";
+            else prompt = "Act as a marketing genius. Create a viral campaign for: " + input + ". Use the AIDA framework.";
 
-            // Display & Increment
-            document.getElementById('finalPrompt').innerText = result;
-            document.getElementById('outputSection').classList.remove('hidden');
-            
-            userLimits[activeModel]++;
-            saveLimits();
+            document.getElementById('output').innerText = prompt;
+            document.getElementById('resultBox').classList.remove('hidden');
+
+            userLimits[currentCat]++;
+            save();
+            updateCount();
         }
 
-        // AD UNLOCK LOGIC
         function watchAdToUnlock() {
-            // 1. Open Adsterra Ad in new tab
-            window.open(ADSTERRA_DIRECT_LINK, '_blank');
+            // 1. Open Adsterra Direct Link in New Tab
+            window.open(DIRECT_LINK_URL, '_blank');
             
-            // 2. Grant 10 more prompts (Reset category count to 0)
-            userLimits[activeModel] = 0;
-            saveLimits();
+            // 2. Unlock: Reset count for this category
+            userLimits[currentCat] = 0;
+            save();
             
             // 3. Close Modal
             closeModal();
-            alert("Success! 10 additional prompts unlocked for this category.");
+            updateCount();
+            alert("Success! 10 more prompts added.");
         }
 
-        function closeModal() {
-            document.getElementById('adModal').style.display = 'none';
-        }
-
-        function copyResult() {
-            navigator.clipboard.writeText(document.getElementById('finalPrompt').innerText);
-            alert("Copied!");
-        }
-
-        window.onload = loadLimits;
+        function save() { localStorage.setItem('user_limits_v1', JSON.stringify(userLimits)); }
+        function closeModal() { document.getElementById('adModal').style.display = 'none'; }
+        function copyText() { navigator.clipboard.writeText(document.getElementById('output').innerText); alert("Copied!"); }
+        
+        updateCount();
     </script>
 </body>
 </html>
