@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptGenie AI - Free ChatGPT & Midjourney Prompt Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-200">
+
+    <!-- Navigation -->
+    <nav class="border-b border-slate-800 p-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">PromptGenie<span class="text-blue-500">.ai</span></div>
+            <div class="text-sm text-slate-400">#1 AI Prompt Tool</div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="max-w-4xl mx-auto pt-16 pb-12 px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6">
+            Make Your AI <span class="text-blue-500">Smarter</span>
+        </h1>
+        <p class="text-lg text-slate-400">Generate pro-level prompts for ChatGPT and Midjourney instantly.</p>
+    </header>
+
+    <!-- Tool -->
+    <main class="max-w-3xl mx-auto px-4">
+        <div class="bg-slate-800/50 border border-slate-700 p-6 rounded-3xl shadow-2xl">
+            <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+                <button onclick="setCat('chatgpt')" id="btn-chatgpt" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm whitespace-nowrap">ChatGPT</button>
+                <button onclick="setCat('midjourney')" id="btn-midjourney" class="bg-slate-700 text-slate-400 px-4 py-2 rounded-xl text-sm whitespace-nowrap">Midjourney</button>
+                <button onclick="setCat('coding')" id="btn-coding" class="bg-slate-700 text-slate-400 px-4 py-2 rounded-xl text-sm whitespace-nowrap">Coding</button>
+            </div>
+
+            <textarea id="userInput" placeholder="What do you want to create?" class="w-full h-40 bg-slate-900 border border-slate-700 rounded-2xl p-5 text-lg outline-none focus:ring-2 focus:ring-blue-500 mb-4"></textarea>
+            
+            <button onclick="generate()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold text-lg transition">Generate Prompt ✨</button>
+
+            <div id="resultBox" class="hidden mt-8">
+                <div class="flex justify-between mb-2">
+                    <span class="text-xs font-bold text-slate-500">YOUR OPTIMIZED PROMPT:</span>
+                    <button onclick="copyText()" class="text-blue-400 text-sm">Copy</button>
+                </div>
+                <div id="output" class="bg-slate-950 p-6 rounded-2xl border border-blue-500/30 italic"></div>
+            </div>
+        </div>
+
+        <!-- SEO Content -->
+        <section class="mt-20 border-t border-slate-800 pt-10 pb-20">
+            <h2 class="text-2xl font-bold mb-4">Why use an AI Prompt Generator?</h2>
+            <p class="text-slate-400 leading-relaxed">
+                Using the right prompts is the key to getting high-quality results from AI. Our tool helps you bypass the "bad output" phase by automatically adding engineering techniques to your simple ideas. Perfect for marketing, SEO, and AI art.
+            </p>
+        </section>
+    </main>
+
+    <script>
+        let currentCat = 'chatgpt';
+        
+        function setCat(cat) {
+            currentCat = cat;
+            ['chatgpt', 'midjourney', 'coding'].forEach(c => {
+                const btn = document.getElementById('btn-' + c);
+                btn.className = (c === cat) ? 'bg-blue-600 text-white px-4 py-2 rounded-xl text-sm' : 'bg-slate-700 text-slate-400 px-4 py-2 rounded-xl text-sm';
+            });
+        }
+
+        function generate() {
+            const input = document.getElementById('userInput').value;
+            if(!input) return alert("Please type something!");
+            
+            let res = "";
+            if(currentCat === 'chatgpt') res = "Act as an expert. Task: " + input + ". Format the output professionally with bullet points.";
+            else if(currentCat === 'midjourney') res = "Cinematic shot, " + input + ", 8k, photorealistic, cinematic lighting, --ar 16:9";
+            else res = "Write optimized and clean code for: " + input + ". Include comments and best practices.";
+
+            document.getElementById('output').innerText = res;
+            document.getElementById('resultBox').classList.remove('hidden');
+        }
+
+        function copyText() {
+            const text = document.getElementById('output').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Copied!");
+        }
+    </script>
+</body>
+</html>
