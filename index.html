@@ -3,212 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptGenie Pro - Advanced AI Prompt Engineering Tool</title>
+    <title>PromptMaster Pro | All-in-One AI Prompt Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
-        .gradient-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; }
+        .glass-card { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .active-card { border-color: #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+        .gradient-bg { background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent), radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.1), transparent); }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
     </style>
 </head>
-<body class="bg-[#020617] text-slate-200 min-h-screen">
+<body class="text-slate-100 min-h-screen gradient-bg">
 
-    <!-- Header -->
-    <nav class="border-b border-slate-800 p-5 sticky top-0 z-50 bg-[#020617]/80 backdrop-blur-md">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-2xl font-extrabold tracking-tighter">
-                <span class="gradient-text">PromptGenie</span><span class="text-white">.PRO</span>
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                </div>
+                <span class="text-2xl font-black tracking-tighter">PromptMaster<span class="text-blue-500">.pro</span></span>
             </div>
-            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-400">
-                <a href="#tool" class="hover:text-blue-400">Tool</a>
-                <a href="#history" class="hover:text-blue-400">History</a>
-                <a href="#guide" class="hover:text-blue-400">SEO Guide</a>
+            <div class="flex gap-4 items-center">
+                <span class="text-xs font-bold text-slate-500 bg-slate-900 px-3 py-1 rounded-full border border-white/5">v2.0 LIVE</span>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="max-w-4xl mx-auto pt-20 pb-12 px-6 text-center">
-        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-4 py-1.5 rounded-full border border-blue-500/20 uppercase tracking-widest">Master AI Prompting</span>
-        <h1 class="text-5xl md:text-7xl font-extrabold text-white mt-6 mb-6 tracking-tight leading-tight">
-            Stop Typing. Start <span class="gradient-text">Engineering.</span>
-        </h1>
-        <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Don't just ask AI. Give it a framework. Our tool converts simple ideas into complex, high-quality prompts that get 10x better results.
-        </p>
-    </header>
+    <main class="max-w-7xl mx-auto px-6 pt-12 pb-24">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-none">High-Performance <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">AI Prompt Engineering</span></h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">Select a model, enter your idea, and let our engine build a professional-grade prompt with technical frameworks.</p>
+        </header>
 
-    <!-- Main Tool Container -->
-    <main id="tool" class="max-w-5xl mx-auto px-4 pb-24">
-        <div class="grid lg:grid-cols-3 gap-8">
-            
-            <!-- Sidebar: Settings -->
-            <div class="lg:col-span-1 space-y-6">
-                <div class="glass p-6 rounded-3xl">
-                    <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
-                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> PRESETS
-                    </h3>
-                    <div class="space-y-3">
-                        <button onclick="setCat('marketing')" id="btn-marketing" class="w-full text-left px-4 py-3 rounded-xl text-sm transition glass hover:bg-slate-700">Digital Marketing</button>
-                        <button onclick="setCat('midjourney')" id="btn-midjourney" class="w-full text-left px-4 py-3 rounded-xl text-sm transition glass hover:bg-slate-700">Midjourney Art</button>
-                        <button onclick="setCat('business')" id="btn-business" class="w-full text-left px-4 py-3 rounded-xl text-sm transition glass hover:bg-slate-700">Business & Strategy</button>
-                        <button onclick="setCat('coding')" id="btn-coding" class="w-full text-left px-4 py-3 rounded-xl text-sm transition glass hover:bg-slate-700">Clean Code</button>
-                    </div>
+        <!-- 1. Model Selection Grid -->
+        <section class="grid md:grid-cols-4 gap-6 mb-12">
+            <!-- ChatGPT -->
+            <div onclick="selectModel('chatgpt')" id="card-chatgpt" class="glass-card p-6 rounded-3xl cursor-pointer hover:border-white/20 transition-all active-card">
+                <div class="w-12 h-12 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-4 text-emerald-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
                 </div>
+                <h3 class="font-bold text-lg mb-1">ChatGPT-4o</h3>
+                <p class="text-xs text-slate-500">Best for complex reasoning, writing, and logic.</p>
+            </div>
+            <!-- Midjourney -->
+            <div onclick="selectModel('midjourney')" id="card-midjourney" class="glass-card p-6 rounded-3xl cursor-pointer hover:border-white/20 transition-all">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-4 text-purple-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Midjourney v6</h3>
+                <p class="text-xs text-slate-500">Photorealistic images and artistic AI art.</p>
+            </div>
+            <!-- Coding -->
+            <div onclick="selectModel('coding')" id="card-coding" class="glass-card p-6 rounded-3xl cursor-pointer hover:border-white/20 transition-all">
+                <div class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-4 text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Expert Coder</h3>
+                <p class="text-xs text-slate-500">Clean, modular, and error-free programming.</p>
+            </div>
+            <!-- Marketing -->
+            <div onclick="selectModel('marketing')" id="card-marketing" class="glass-card p-6 rounded-3xl cursor-pointer hover:border-white/20 transition-all">
+                <div class="w-12 h-12 bg-pink-500/20 rounded-2xl flex items-center justify-center mb-4 text-pink-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /></svg>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Marketing Pro</h3>
+                <p class="text-xs text-slate-500">SEO, Ads, and persuasive sales copywriting.</p>
+            </div>
+        </section>
 
-                <div class="glass p-6 rounded-3xl">
-                    <h3 class="text-sm font-bold text-white mb-4">TONE & STYLE</h3>
-                    <select id="tone" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="Professional & Academic">Professional & Academic</option>
-                        <option value="Creative & Descriptive">Creative & Descriptive</option>
-                        <option value="Conversational & Friendly">Conversational & Friendly</option>
-                        <option value="Minimalist & Direct">Minimalist & Direct</option>
-                    </select>
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Sidebar Controls -->
+            <div class="lg:col-span-1 space-y-6">
+                <div class="glass-card p-8 rounded-[2rem] space-y-6">
+                    <div>
+                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3 block">Tone & Style</label>
+                        <select id="tone" class="w-full bg-slate-900/50 border border-white/5 rounded-xl p-3 outline-none focus:border-blue-500 transition">
+                            <option>Highly Professional</option>
+                            <option>Creative & Playful</option>
+                            <option>Direct & Concise</option>
+                            <option>Technical/Academic</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Dynamic Option for Images -->
+                    <div id="imageOptions" class="hidden animate-in fade-in duration-500">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3 block">Aspect Ratio</label>
+                        <select id="ratio" class="w-full bg-slate-900/50 border border-white/5 rounded-xl p-3 outline-none">
+                            <option value="--ar 16:9">Widescreen (16:9)</option>
+                            <option value="--ar 1:1">Square (1:1)</option>
+                            <option value="--ar 9:16">Vertical (9:16)</option>
+                        </select>
+                    </div>
+
+                    <!-- Dynamic Option for Code -->
+                    <div id="codeOptions" class="hidden animate-in fade-in duration-500">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3 block">Language</label>
+                        <select id="lang" class="w-full bg-slate-900/50 border border-white/5 rounded-xl p-3 outline-none">
+                            <option>React/Next.js</option>
+                            <option>Python</option>
+                            <option>JavaScript</option>
+                            <option>PHP/Laravel</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <!-- Main Input Area -->
-            <div class="lg:col-span-2 space-y-6">
-                <div class="glass p-8 rounded-3xl border-t border-white/10 shadow-2xl">
-                    <label class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-widest">Input Your Basic Idea</label>
-                    <textarea id="userInput" placeholder="e.g. Write a business plan for a pizza shop or Create a logo for a tech brand..." 
-                        class="w-full h-48 bg-slate-900/50 border border-slate-700 rounded-2xl p-6 text-xl outline-none focus:ring-2 focus:ring-blue-500 mb-6 transition-all placeholder:text-slate-700"></textarea>
-                    
-                    <button onclick="generate()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 py-5 rounded-2xl font-bold text-xl shadow-lg shadow-blue-500/20 transition-all transform active:scale-[0.98]">
-                        Build Expert Prompt ✨
-                    </button>
+            <!-- Input/Output Area -->
+            <div class="lg:col-span-2 space-y-8">
+                <div class="glass-card p-1 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                    <textarea id="userInput" placeholder="Write your basic idea here..." class="w-full h-56 bg-transparent border-none p-10 text-2xl outline-none placeholder:text-slate-700 resize-none"></textarea>
+                    <div class="p-6 bg-white/5 border-t border-white/5 flex justify-between items-center">
+                        <span class="text-xs text-slate-500 font-medium">Tip: Use simple words, we'll do the rest.</span>
+                        <button onclick="buildPrompt()" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-2xl font-bold flex items-center gap-2 transition transform active:scale-95 shadow-xl shadow-blue-500/20">
+                            Build Prompt <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Detailed Result Box -->
-                <div id="resultBox" class="hidden animate-in fade-in slide-in-from-bottom-5 duration-700">
-                    <div class="glass p-8 rounded-3xl border border-blue-500/30">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-blue-500/20 text-blue-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Engineered Result</span>
-                            <div class="flex gap-4">
-                                <button onclick="downloadPrompt()" class="text-slate-400 hover:text-white text-sm">Download .txt</button>
-                                <button onclick="copyText()" class="text-blue-400 font-bold text-sm">Copy Prompt</button>
-                            </div>
-                        </div>
-                        <div id="output" class="text-slate-300 leading-relaxed italic text-lg whitespace-pre-line"></div>
+                <div id="outputSection" class="hidden space-y-4">
+                    <div class="flex justify-between items-center px-4">
+                        <h3 class="text-xs font-black uppercase tracking-widest text-blue-500">Engineered Framework</h3>
+                        <button onclick="copyResult()" class="text-xs font-bold bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg transition">Copy to Clipboard</button>
+                    </div>
+                    <div class="glass-card p-10 rounded-[2.5rem] border-blue-500/20 relative group">
+                        <div id="finalPrompt" class="text-slate-200 text-xl leading-relaxed whitespace-pre-line italic"></div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- History Section -->
-        <section id="history" class="mt-20">
-            <h2 class="text-2xl font-bold mb-6">Recent Creations</h2>
-            <div id="historyList" class="grid md:grid-cols-2 gap-4">
-                <!-- History items will be injected here -->
-            </div>
-        </section>
     </main>
 
-    <footer class="border-t border-slate-900 py-20 px-6 text-center text-slate-600">
-        <p class="text-sm">© 2024 PromptGenie Pro - The Ultimate AI Prompt Engineering Framework.</p>
-    </footer>
-
     <script>
-        let currentCat = 'marketing';
-        let history = JSON.parse(localStorage.getItem('prompt_history')) || [];
+        let activeModel = 'chatgpt';
 
-        function setCat(cat) {
-            currentCat = cat;
-            document.querySelectorAll('[id^="btn-"]').forEach(btn => {
-                btn.classList.remove('bg-blue-600', 'text-white');
-                btn.classList.add('glass', 'text-slate-400');
-            });
-            document.getElementById('btn-' + cat).classList.add('bg-blue-600', 'text-white');
-            document.getElementById('btn-' + cat).classList.remove('glass');
+        function selectModel(model) {
+            activeModel = model;
+            // UI Update
+            document.querySelectorAll('[id^="card-"]').forEach(c => c.classList.remove('active-card'));
+            document.getElementById('card-' + model).classList.add('active-card');
+            
+            // Toggle Extra Options
+            document.getElementById('imageOptions').classList.toggle('hidden', model !== 'midjourney');
+            document.getElementById('codeOptions').classList.toggle('hidden', model !== 'coding');
         }
 
-        // Initialize first button
-        setCat('marketing');
-
-        function generate() {
+        function buildPrompt() {
             const input = document.getElementById('userInput').value;
             const tone = document.getElementById('tone').value;
-            if(!input) return alert("Please enter your idea!");
+            if(!input) return alert("Please type your idea!");
 
-            let prompt = "";
-            const timestamp = new Date().toLocaleTimeString();
-
-            if(currentCat === 'marketing') {
-                prompt = `Act as a Senior Growth Marketer and SEO Expert. 
-                Task: ${input}
-                Tone: ${tone}
-                Framework: Use the AIDA model (Attention, Interest, Desire, Action). 
-                Context: Focus on high-conversion psychological triggers and ensure the content is optimized for Google search algorithms. Provide a meta description and a catchy headline.
-                Constraints: Do not use generic corporate jargon. Keep it punchy and persuasive.`;
+            let result = "";
+            if(activeModel === 'chatgpt') {
+                result = `[SYSTEM PERSONA: EXPERT CONSULTANT]\n[TONE: ${tone}]\n\nTask: ${input}\n\nFramework Instructions:\n1. Provide a step-by-step analytical response.\n2. Use structured formatting with bullet points.\n3. Include a "Key Takeaways" section at the end.\n4. Ensure the content is original, creative, and follows high-level reasoning.`;
             } 
-            else if(currentCat === 'midjourney') {
-                prompt = `A masterpiece, hyper-realistic cinematic photography of ${input}. 
-                Style: ${tone}, shot on 35mm lens, f/2.8.
-                Lighting: Volumetric lighting, global illumination, ray tracing.
-                Details: 8k resolution, highly detailed textures, Unreal Engine 5 render, sharp focus, vibrant colors --ar 16:9 --v 6.0 --stylize 250`;
+            else if(activeModel === 'midjourney') {
+                const ratio = document.getElementById('ratio').value;
+                result = `Hyper-realistic cinematic photography of ${input}. Shot on 85mm lens, f/1.8 aperture, ISO 100. Lighting: Volumetric god rays, global illumination. Details: 8k resolution, Unreal Engine 5 render, highly detailed textures, vibrant color grading ${ratio} --v 6.0 --stylize 250`;
             }
-            else if(currentCat === 'business') {
-                prompt = `Act as a Harvard Business Consultant. 
-                Task: ${input}
-                Persona: Strategic, analytical, and data-driven.
-                Structure: 
-                1. Executive Summary
-                2. Target Market Analysis
-                3. Revenue Model
-                4. Potential Risks & Mitigation.
-                Style: ${tone}. Be concise and focus on ROI.`;
+            else if(activeModel === 'coding') {
+                const lang = document.getElementById('lang').value;
+                result = `[ROLE: SENIOR FULL-STACK DEVELOPER]\nProject: ${input}\nStack: ${lang}\n\nRequirements:\n1. Write production-ready, clean, and modular code.\n2. Follow ${tone} documentation style.\n3. Include error handling and performance optimizations.\n4. Provide a brief explanation of the architectural approach used.`;
             }
-            else {
-                prompt = `Act as a Senior Full Stack Developer. 
-                Goal: ${input}
-                Instructions: Write clean, modular, and optimized code. Use ES6+ standards. 
-                Include: Error handling, comments for logic explanation, and a short unit test case.
-                Formatting: ${tone}. Ensure best practices for security and performance are followed.`;
+            else if(activeModel === 'marketing') {
+                result = `[ROLE: ELITE GROWTH MARKETER]\nGoal: ${input}\nFramework: PAS (Problem-Agitation-Solution)\n\nInstructions:\n1. Write a highly persuasive headline.\n2. Develop ad copy that targets psychological triggers.\n3. Include 3 variations of CTA (Call to Action).\n4. Tone: ${tone}.`;
             }
 
-            document.getElementById('output').innerText = prompt;
-            document.getElementById('resultBox').classList.remove('hidden');
-            
-            // Save to history
-            saveToHistory(input, prompt);
-            window.scrollTo(0, document.getElementById('resultBox').offsetTop - 100);
+            document.getElementById('finalPrompt').innerText = result;
+            document.getElementById('outputSection').classList.remove('hidden');
+            window.scrollTo({ top: document.getElementById('outputSection').offsetTop - 50, behavior: 'smooth' });
         }
 
-        function saveToHistory(input, prompt) {
-            history.unshift({input, prompt});
-            if(history.length > 4) history.pop();
-            localStorage.setItem('prompt_history', JSON.stringify(history));
-            renderHistory();
-        }
-
-        function renderHistory() {
-            const list = document.getElementById('historyList');
-            list.innerHTML = history.map(item => `
-                <div class="glass p-5 rounded-2xl text-xs">
-                    <p class="text-blue-400 font-bold mb-1 truncate">${item.input}</p>
-                    <p class="text-slate-500 line-clamp-2 italic">${item.prompt}</p>
-                </div>
-            `).join('');
-        }
-
-        function copyText() {
-            const text = document.getElementById('output').innerText;
+        function copyResult() {
+            const text = document.getElementById('finalPrompt').innerText;
             navigator.clipboard.writeText(text);
-            alert("Prompt Copied to Clipboard!");
+            alert("Copied successfully!");
         }
-
-        function downloadPrompt() {
-            const text = document.getElementById('output').innerText;
-            const element = document.createElement('a');
-            const file = new Blob([text], {type: 'text/plain'});
-            element.href = URL.createObjectURL(file);
-            element.download = "ai-prompt.txt";
-            document.body.appendChild(element);
-            element.click();
-        }
-
-        renderHistory();
     </script>
 </body>
 </html>
