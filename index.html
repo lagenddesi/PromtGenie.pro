@@ -13,9 +13,15 @@
         .active-card { border-color: #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; }
         #adModal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 20px; }
         
-        /* Banner Container Fix */
-        .ad-slot { width: 100%; max-width: 728px; height: 90px; margin: 0 auto 2rem auto; overflow: hidden; }
-        @media (max-width: 640px) { .ad-slot { height: 50px; max-width: 320px; } }
+        /* Responsive Ad Container */
+        .ad-banner-wrapper { 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+            margin-bottom: 2rem; 
+            min-height: 90px; 
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -24,8 +30,8 @@
     <div id="adModal">
         <div class="glass p-10 rounded-[2rem] max-w-md w-full text-center border-blue-500/30">
             <h2 class="text-2xl font-bold mb-4 text-blue-400">Limit Reached!</h2>
-            <p class="text-slate-400 mb-8">Daily 10 free prompts used. Watch an ad to unlock **10 MORE**.</p>
-            <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold text-lg mb-4 shadow-xl shadow-blue-600/20 transition">
+            <p class="text-slate-400 mb-8">Click unlock to watch an ad and get **10 more** prompts.</p>
+            <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold text-lg mb-4 shadow-xl shadow-blue-600/20">
                 UNLOCK NOW ✨
             </button>
             <button onclick="closeModal()" class="text-slate-500 text-sm">Cancel</button>
@@ -42,29 +48,24 @@
 
     <main class="max-w-4xl mx-auto px-6 py-10">
         
-        <!-- BANNER AD (WITH NAVIGATION SHIELD) -->
-        <div class="ad-slot shadow-lg">
-            <iframe 
-                id="ad-frame"
-                style="width:100%; height:100%; border:none; overflow:hidden;" 
-                sandbox="allow-scripts allow-same-origin allow-popups"
-                srcdoc="
-                <body style='margin:0; display:flex; justify-content:center; align-items:center; background:transparent;'>
-                    <script>
-  atOptions = {
-    'key' : 'fea6acbdcf0fdca6a97f3460a737e593',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/fea6acbdcf0fdca6a97f3460a737e593/invoke.js"></script> 
-            </body>">
-            </iframe>
+        <!-- FIX: BANNER AD (Direct Script - No Iframe for better loading) -->
+        <div class="ad-banner-wrapper">
+            <div id="ad-container-728">
+                <!-- Aapka Script Yahan Hai -->
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'fea6acbdcf0fdca6a97f3460a737e593',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/fea6acbdcf0fdca6a97f3460a737e593/invoke.js"></script>
+            </div>
         </div>
 
-        <h1 class="text-4xl font-extrabold text-center mb-10 leading-tight">AI Prompt <span class="text-blue-500">Master</span></h1>
+        <h1 class="text-4xl font-extrabold text-center mb-10 leading-tight tracking-tight">AI Prompt <span class="text-blue-500 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Master</span></h1>
 
         <!-- CATEGORIES -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10 text-center">
@@ -75,10 +76,12 @@
         </div>
 
         <!-- INPUT BOX -->
-        <div class="glass p-2 rounded-[2rem] overflow-hidden mb-10">
-            <textarea id="userInput" placeholder="Describe your idea..." class="w-full h-40 bg-transparent p-6 text-xl outline-none resize-none"></textarea>
-            <div class="p-4 bg-white/5 border-t border-white/5 flex justify-end">
-                <button onclick="generate()" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-bold transition">Generate ✨</button>
+        <div class="glass p-2 rounded-[2.5rem] overflow-hidden mb-10 shadow-2xl">
+            <textarea id="userInput" placeholder="Describe your idea here..." class="w-full h-44 bg-transparent p-8 text-xl outline-none resize-none"></textarea>
+            <div class="p-6 bg-white/5 border-t border-white/5 flex justify-end">
+                <button onclick="generate()" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-3 rounded-2xl font-bold transition transform active:scale-95 shadow-lg shadow-blue-600/20">
+                    Generate ✨
+                </button>
             </div>
         </div>
 
@@ -90,7 +93,6 @@
     </main>
 
     <script>
-        // APNA DIRECT LINK YAHAN PASTE KAREIN
         const MY_DIRECT_LINK = "https://www.effectivegatecpm.com/hx9eqwb2?key=eca9ef1a642f0854c04b34a426523a34";
 
         let currentCat = 'chatgpt';
@@ -103,11 +105,6 @@
             currentCat = cat;
             document.querySelectorAll('[id^="card-"]').forEach(c => c.classList.remove('active-card'));
             document.getElementById('card-' + cat).classList.add('active-card');
-            document.getElementById('activeCat').innerText = cat.toUpperCase();
-            updateUI();
-        }
-
-        function updateUI() {
             document.getElementById('remCount').innerText = 10 - userLimits[currentCat];
         }
 
@@ -119,26 +116,24 @@
             const input = document.getElementById('userInput').value;
             if(!input) return;
 
-            document.getElementById('output').innerText = `[EXPERT ${currentCat.toUpperCase()}]: ${input}. (Engineered with professional parameters for maximum AI quality)`;
+            document.getElementById('output').innerText = `[EXPERT ${currentCat.toUpperCase()}]: ${input}. (Optimized for maximum AI logic and clarity)`;
             document.getElementById('resultBox').classList.remove('hidden');
 
             userLimits[currentCat]++;
             localStorage.setItem('user_limits_v4', JSON.stringify(userLimits));
-            updateUI();
+            document.getElementById('remCount').innerText = 10 - userLimits[currentCat];
         }
 
         function watchAdToUnlock() {
             window.open(MY_DIRECT_LINK, '_blank'); 
             userLimits[currentCat] = 0;
             localStorage.setItem('user_limits_v4', JSON.stringify(userLimits));
-            closeModal();
-            updateUI();
+            document.getElementById('adModal').style.display = 'none';
+            document.getElementById('remCount').innerText = 10;
         }
 
         function closeModal() { document.getElementById('adModal').style.display = 'none'; }
         function copyText() { navigator.clipboard.writeText(document.getElementById('output').innerText); alert("Copied!"); }
-        
-        updateUI();
     </script>
 </body>
 </html>
