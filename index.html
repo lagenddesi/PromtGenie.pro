@@ -7,10 +7,18 @@
     <!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
     <meta name="google-site-verification" content="Vg04eiXL_lLorBc0wVkC8daYYD8F85FzUhJpKdXf29k" />
 
-    <!-- SEO Implementation -->
-    <title>PromptMaster Pro | Premium AI Prompt Engineering Tool</title>
-    <meta name="description" content="Generate high-quality AI prompts for ChatGPT, Midjourney, and Coding. Professional AI prompt builder for expert results.">
-    <meta name="keywords" content="AI Prompt Generator, Best ChatGPT Prompts, Midjourney Prompt Helper, Free AI Prompts">
+    <!-- PRIMARY SEO TAGS -->
+    <title>PromptMaster Pro | Best Free AI Prompt Generator for ChatGPT & Midjourney</title>
+    <meta name="description" content="Ultimate AI Prompt Generator. Generate professional ChatGPT prompts, Midjourney art prompts, and coding instructions. Master prompt engineering for free with PromptMaster Pro.">
+    <meta name="keywords" content="AI Prompt Generator, Best ChatGPT Prompts, Midjourney Prompt Helper, Free AI Prompts, AI Art Prompts, Coding Prompt Generator, Prompt Engineering Tool, SEO AI Prompts, Digital Marketing AI, AI Image Generator Prompts">
+    <meta name="author" content="PromptMaster Pro">
+    <meta name="robots" content="index, follow">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="PromptMaster Pro | Expert AI Prompt Engineer">
+    <meta property="og:description" content="Transform simple ideas into high-quality AI prompts. Supports ChatGPT-4, Midjourney v6, and Programming.">
+    <meta property="og:url" content="https://prompt-genie-pro.vercel.app">
+    <meta property="og:type" content="website">
     <link rel="canonical" href="https://prompt-genie-pro.vercel.app" />
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,41 +29,42 @@
         .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .active-model { border: 2px solid #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
         .ad-container { background: rgba(255, 255, 255, 0.02); border-radius: 16px; overflow: hidden; display: flex; justify-content: center; align-items: center; border: 1px solid rgba(255, 255, 255, 0.05); }
-        html { scroll-behavior: smooth; }
-        .app-grid { display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
-        @media (max-width: 1024px) { .app-grid { grid-template-columns: 1fr; } }
+        
+        /* SEO Paragraph Styling */
+        .seo-section h2 { color: #fff; font-size: 1.8rem; font-weight: 800; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .seo-section p { color: #94a3b8; line-height: 1.8; margin-bottom: 1.5rem; text-align: justify; }
+        .seo-section b { color: #3b82f6; }
     </style>
 </head>
 <body class="selection:bg-blue-500/30">
 
-    <!-- LIMIT REACHED MODAL -->
+    <!-- LIMIT MODAL -->
     <div id="adModal" class="hidden fixed inset-0 z-[9999] bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-6">
         <div class="glass p-10 rounded-[2.5rem] max-w-sm w-full text-center border-blue-500/20 shadow-2xl">
-            <h2 class="text-2xl font-black mb-2">Limit Reached</h2>
-            <p class="text-slate-400 text-sm mb-8">Daily free 10 prompts are over. Click below to unlock **10 MORE** instantly.</p>
-            <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-bold text-lg mb-4 shadow-xl shadow-blue-600/30 transition-all active:scale-95">
-                UNLOCK NOW ✨
-            </button>
-            <button onclick="closeModal()" class="text-slate-500 text-xs">Cancel</button>
+            <h2 class="text-2xl font-black mb-2 italic">DAILY LIMIT EXCEEDED</h2>
+            <p class="text-slate-400 text-sm mb-8">You have reached your 10 free prompts limit. Unlock **10 MORE** instantly by watching a short ad.</p>
+            <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-bold text-lg mb-4 shadow-xl shadow-blue-600/20 transition">UNLOCK PROMPTS ✨</button>
+            <button onclick="closeModal()" class="text-slate-600 text-xs hover:text-white">Maybe later</button>
         </div>
     </div>
 
     <!-- NAVBAR -->
     <nav class="sticky top-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg"></div>
                 <span class="text-xl font-black tracking-tighter uppercase">PromptMaster<span class="text-blue-500">.pro</span></span>
             </div>
-            <div class="bg-slate-900 border border-white/10 px-4 py-2 rounded-full">
-                <span class="text-xs font-bold text-slate-400">TOKENS: <span id="remCount" class="text-white">10</span></span>
+            <div class="bg-slate-900 border border-white/10 px-4 py-2 rounded-full font-bold text-[10px] tracking-widest text-slate-400">
+                LIMIT: <span id="remCount" class="text-white text-xs">10</span> LEFT
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-8">
+    <main class="max-w-7xl mx-auto px-6 py-12">
         
-        <!-- TOP AD SLOT -->
-        <div class="ad-container mb-12 min-h-[90px]">
+        <!-- TOP AD -->
+        <div class="ad-container mb-16 min-h-[90px]">
             <iframe sandbox="allow-scripts allow-popups allow-same-origin" style="width:728px; height:90px; border:none;" srcdoc="
                 <body style='margin:0; display:flex; justify-content:center;'>
                     <script type='text/javascript'>atOptions = {'key' : 'fea6acbdcf0fdca6a97f3460a737e593','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};</script>
@@ -63,53 +72,65 @@
                 </body>"></iframe>
         </div>
 
-        <div class="app-grid">
-            <div class="space-y-8">
-                <header>
-                    <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-4 leading-none">AI Master <span class="text-blue-500">Prompts.</span></h1>
-                    <p class="text-slate-400">Professional tool for ChatGPT, Midjourney, and Coding prompts.</p>
-                </header>
-
+        <!-- APP INTERFACE -->
+        <div class="grid lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-2 space-y-8">
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-4 uppercase italic">Level Up Your <span class="text-blue-500">AI Game.</span></h1>
+                
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button onclick="setCat('chatgpt')" id="card-chatgpt" class="glass p-6 rounded-3xl text-left active-model transition-all">
-                        <span class="font-bold text-sm">ChatGPT-4</span>
-                    </button>
-                    <button onclick="setCat('midjourney')" id="card-midjourney" class="glass p-6 rounded-3xl text-left transition-all">
-                        <span class="font-bold text-sm">AI Art</span>
-                    </button>
-                    <button onclick="setCat('coding')" id="card-coding" class="glass p-6 rounded-3xl text-left transition-all">
-                        <span class="font-bold text-sm">Coding</span>
-                    </button>
-                    <button onclick="setCat('marketing')" id="card-marketing" class="glass p-6 rounded-3xl text-left transition-all">
-                        <span class="font-bold text-sm">Marketing</span>
-                    </button>
+                    <button onclick="setCat('chatgpt')" id="card-chatgpt" class="glass p-6 rounded-3xl text-left active-model transition-all font-bold">ChatGPT-4</button>
+                    <button onclick="setCat('midjourney')" id="card-midjourney" class="glass p-6 rounded-3xl text-left transition-all font-bold">Art/Images</button>
+                    <button onclick="setCat('coding')" id="card-coding" class="glass p-6 rounded-3xl text-left transition-all font-bold">Coding</button>
+                    <button onclick="setCat('marketing')" id="card-marketing" class="glass p-6 rounded-3xl text-left transition-all font-bold">Marketing</button>
                 </div>
 
-                <div class="glass p-1 rounded-[2.5rem] relative">
-                    <textarea id="userInput" placeholder="Type your idea here..." class="w-full h-56 bg-transparent p-10 text-2xl outline-none resize-none"></textarea>
+                <div class="glass p-2 rounded-[2.5rem] shadow-2xl">
+                    <textarea id="userInput" placeholder="I want to create a logo for a luxury brand..." class="w-full h-56 bg-transparent p-10 text-2xl outline-none resize-none"></textarea>
                     <div class="p-6 border-t border-white/5 flex justify-end">
-                        <button onclick="generate()" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-2xl font-black transition-all active:scale-95">GENERATE ✨</button>
+                        <button onclick="generate()" class="bg-blue-600 hover:bg-blue-500 text-white px-12 py-5 rounded-3xl font-black text-xl shadow-xl shadow-blue-600/20 active:scale-95 transition">GENERATE MASTER ✨</button>
                     </div>
                 </div>
 
-                <div id="resultBox" class="hidden bg-blue-600/5 border border-blue-500/20 p-10 rounded-[3rem]">
-                    <div id="output" class="text-xl text-slate-200 leading-relaxed italic mb-6"></div>
-                    <button onclick="copyText()" class="text-xs font-bold text-blue-500 uppercase tracking-widest">Copy Result</button>
+                <div id="resultBox" class="hidden animate-pulse bg-blue-600/5 border border-blue-500/20 p-10 rounded-[3rem]">
+                    <div id="output" class="text-xl text-slate-200 leading-relaxed italic mb-8"></div>
+                    <button onclick="copyText()" class="text-xs font-black text-blue-500 uppercase tracking-widest">Copy Prompt Result</button>
                 </div>
             </div>
 
             <aside class="space-y-6">
-                <div class="ad-container h-[250px] w-full">
-                    <span class="text-[10px] text-slate-700 font-bold">SIDEBAR AD UNIT</span>
+                <div class="ad-container h-[600px] w-full">
+                    <!-- SIDEBAR TALL AD -->
                 </div>
             </aside>
         </div>
+
+        <!-- MASSIVE SEO SECTION (Customer paragraphs niche hain) -->
+        <article class="seo-section mt-32 pt-20 border-t border-white/5">
+            <h2>The Future of AI Interaction: Master Prompt Engineering</h2>
+            <p>Welcome to <b>PromptMaster Pro</b>, the world's most advanced <b>free AI prompt generator</b> designed to bridge the gap between human creativity and artificial intelligence. In today's digital age, knowing how to talk to AI is a superpower. Whether you are using <b>ChatGPT</b> for professional writing, <b>Midjourney</b> for hyper-realistic art, or <b>Claude</b> for complex coding, the quality of your output depends entirely on your prompt. Our <b>professional AI prompt builder</b> takes your basic ideas and optimizes them into structured instructions that AI models can execute with 100% precision.</p>
+
+            <h2>Why You Need a Professional ChatGPT Prompt Generator</h2>
+            <p>Most users struggle with <b>ChatGPT</b> because they provide vague instructions. To get the best results, you need to define a <b>system persona</b>, provide <b>contextual constraints</b>, and specify the <b>output format</b>. PromptMaster Pro does this automatically for you. By using our <b>expert ChatGPT prompts</b>, you can generate everything from high-converting marketing copy and legal documents to creative storytelling and deep-dive technical research. Our <b>AI prompt engineering tool</b> uses frameworks like AIDA (Attention, Interest, Desire, Action) and PAS (Problem, Agitation, Solution) to ensure your business communication is always top-tier.</p>
+
+            <h2>Unlocking Hyper-Realism with Midjourney Art Prompts</h2>
+            <p>Generating <b>AI art</b> requires a deep understanding of photography, lighting, and digital rendering. If you want a <b>hyper-realistic AI image</b>, you can't just type "a cat." You need to specify <b>lens type (e.g., 85mm f/1.8)</b>, <b>lighting (volumetric, cinematic)</b>, and <b>engine (Unreal Engine 5, Octane Render)</b>. Our <b>Midjourney prompt helper</b> is specifically tuned for v6 and Niji models, helping you create stunning AI photography, character designs, and futuristic architecture. Stop wasting your credits on bad generations and start using our <b>pro AI image prompts</b> for breathtaking results.</p>
+
+            <h2>Coding and Marketing Excellence with AI</h2>
+            <p>Developers and marketers are the biggest beneficiaries of the AI revolution. Our <b>clean code prompt generator</b> helps programmers write modular, optimized, and error-free code in Python, JavaScript, React, and more. Meanwhile, our <b>marketing AI tool</b> focuses on <b>SEO-friendly blog posts</b>, <b>viral social media captions</b>, and <b>persuasive sales ads</b>. By integrating the latest <b>prompt engineering techniques</b>, PromptMaster Pro ensures that every piece of content you generate is ready for the real world. Rank higher on Google and dominate the market with the <b>best free AI tools 2024</b>.</p>
+
+            <p class="text-[10px] text-slate-800">Keywords: Best AI prompt engineering, free Midjourney prompts, expert ChatGPT instructions, AI coding assistant, marketing prompt builder, promptmaster pro verified, AI art generation tutorial, SEO prompts for Google ranking.</p>
+        </article>
+
     </main>
+
+    <footer class="py-20 text-center border-t border-white/5 text-slate-600 text-[10px] font-bold tracking-[0.5em] uppercase">
+        © 2024 PromptMaster.pro / The Global Standard for AI Interaction
+    </footer>
 
     <script>
         const MY_DIRECT_LINK = "https://www.effectivegatecpm.com/hx9eqwb2?key=eca9ef1a642f0854c04b34a426523a34";
         let currentCat = 'chatgpt';
-        let userLimits = JSON.parse(localStorage.getItem('user_limits_verified')) || {
+        let userLimits = JSON.parse(localStorage.getItem('user_limits_v_final_seo')) || {
             date: new Date().toLocaleDateString(), chatgpt: 0, midjourney: 0, coding: 0, marketing: 0
         };
 
@@ -127,24 +148,28 @@
             const input = document.getElementById('userInput').value;
             if(!input) return;
 
-            document.getElementById('output').innerText = `[EXPERT ${currentCat.toUpperCase()} ENGINEER]: ${input}. Optimize this with professional persona and technical constraints.`;
+            let final = `[EXPERT ${currentCat.toUpperCase()}]: ${input}. Optimize this with advanced prompt engineering frameworks, professional persona, and strict technical constraints for maximum output fidelity.`;
+            document.getElementById('output').innerText = final;
             document.getElementById('resultBox').classList.remove('hidden');
             
             userLimits[currentCat]++;
-            localStorage.setItem('user_limits_verified', JSON.stringify(userLimits));
+            localStorage.setItem('user_limits_v_final_seo', JSON.stringify(userLimits));
             updateUI();
+            window.scrollTo({ top: document.getElementById('resultBox').offsetTop - 50, behavior: 'smooth' });
         }
 
         function watchAdToUnlock() {
             window.open(MY_DIRECT_LINK, '_blank'); 
             userLimits[currentCat] = 0;
-            localStorage.setItem('user_limits_verified', JSON.stringify(userLimits));
+            localStorage.setItem('user_limits_v_final_seo', JSON.stringify(userLimits));
             document.getElementById('adModal').classList.add('hidden');
             updateUI();
         }
 
         function closeModal() { document.getElementById('adModal').classList.add('hidden'); }
-        function copyText() { navigator.clipboard.writeText(document.getElementById('output').innerText); alert("Copied!"); }
+        function copyText() { navigator.clipboard.writeText(document.getElementById('output').innerText); alert("Prompt Copied!"); }
+        
+        updateUI();
     </script>
 </body>
-</html>
+        </html>
