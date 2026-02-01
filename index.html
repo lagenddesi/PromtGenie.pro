@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
+    <meta name="google-site-verification" content="Vg04eiXL_lLorBc0wVkC8daYYD8F85FzUhJpKdXf29k" />
+
     <!-- SEO Implementation -->
     <title>PromptMaster Pro | Premium AI Prompt Engineering Tool</title>
-    <meta name="description" content="Professional AI prompt generator for ChatGPT, Midjourney, and Coding. Get expert results with our free AI prompt builder.">
+    <meta name="description" content="Generate high-quality AI prompts for ChatGPT, Midjourney, and Coding. Professional AI prompt builder for expert results.">
     <meta name="keywords" content="AI Prompt Generator, Best ChatGPT Prompts, Midjourney Prompt Helper, Free AI Prompts">
-    <link rel="canonical" href="https://promt-genie-pro.vercel.app/" />
+    <link rel="canonical" href="https://prompt-genie-pro.vercel.app" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,13 +21,7 @@
         .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .active-model { border: 2px solid #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
         .ad-container { background: rgba(255, 255, 255, 0.02); border-radius: 16px; overflow: hidden; display: flex; justify-content: center; align-items: center; border: 1px solid rgba(255, 255, 255, 0.05); }
-        
-        /* Smooth Scroll & Animations */
         html { scroll-behavior: smooth; }
-        .fade-in { animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Sidebar/Mobile Layout */
         .app-grid { display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
         @media (max-width: 1024px) { .app-grid { grid-template-columns: 1fr; } }
     </style>
@@ -34,37 +31,30 @@
     <!-- LIMIT REACHED MODAL -->
     <div id="adModal" class="hidden fixed inset-0 z-[9999] bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-6">
         <div class="glass p-10 rounded-[2.5rem] max-w-sm w-full text-center border-blue-500/20 shadow-2xl">
-            <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-500">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-            </div>
             <h2 class="text-2xl font-black mb-2">Limit Reached</h2>
             <p class="text-slate-400 text-sm mb-8">Daily free 10 prompts are over. Click below to unlock **10 MORE** instantly.</p>
             <button onclick="watchAdToUnlock()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-bold text-lg mb-4 shadow-xl shadow-blue-600/30 transition-all active:scale-95">
                 UNLOCK NOW ✨
             </button>
-            <button onclick="closeModal()" class="text-slate-500 text-xs hover:text-white transition">No thanks, I'll wait</button>
+            <button onclick="closeModal()" class="text-slate-500 text-xs">Cancel</button>
         </div>
     </div>
 
-    <!-- TOP HEADER / NAV -->
+    <!-- NAVBAR -->
     <nav class="sticky top-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl shadow-lg shadow-blue-500/20 flex items-center justify-center">
-                    <span class="text-xl font-black italic">P</span>
-                </div>
                 <span class="text-xl font-black tracking-tighter uppercase">PromptMaster<span class="text-blue-500">.pro</span></span>
             </div>
-            <div id="tokenDisplay" class="bg-slate-900 border border-white/10 px-4 py-2 rounded-full flex items-center gap-2">
-                <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span class="text-xs font-bold text-slate-400 tracking-widest"><span id="remCount" class="text-white">10</span> LEFT</span>
+            <div class="bg-slate-900 border border-white/10 px-4 py-2 rounded-full">
+                <span class="text-xs font-bold text-slate-400">TOKENS: <span id="remCount" class="text-white">10</span></span>
             </div>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto px-6 py-8">
         
-        <!-- TOP AD SLOT (BANNER 728x90) -->
+        <!-- TOP AD SLOT -->
         <div class="ad-container mb-12 min-h-[90px]">
             <iframe sandbox="allow-scripts allow-popups allow-same-origin" style="width:728px; height:90px; border:none;" srcdoc="
                 <body style='margin:0; display:flex; justify-content:center;'>
@@ -74,111 +64,53 @@
         </div>
 
         <div class="app-grid">
-            <!-- LEFT COLUMN: MAIN TOOL -->
             <div class="space-y-8">
-                <header class="mb-10">
-                    <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-4">Mastering <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 leading-none">AI Intelligence.</span></h1>
-                    <p class="text-slate-400 text-lg">Convert your simple ideas into professional-grade AI prompts instantly.</p>
+                <header>
+                    <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-4 leading-none">AI Master <span class="text-blue-500">Prompts.</span></h1>
+                    <p class="text-slate-400">Professional tool for ChatGPT, Midjourney, and Coding prompts.</p>
                 </header>
 
-                <!-- MODEL PICKER -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <button onclick="setCat('chatgpt')" id="card-chatgpt" class="glass p-6 rounded-3xl text-left active-model transition-all">
-                        <div class="w-10 h-10 bg-emerald-500/10 rounded-xl mb-4 flex items-center justify-center text-emerald-500"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg></div>
                         <span class="font-bold text-sm">ChatGPT-4</span>
                     </button>
                     <button onclick="setCat('midjourney')" id="card-midjourney" class="glass p-6 rounded-3xl text-left transition-all">
-                        <div class="w-10 h-10 bg-purple-500/10 rounded-xl mb-4 flex items-center justify-center text-purple-500"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></div>
-                        <span class="font-bold text-sm">Art Master</span>
+                        <span class="font-bold text-sm">AI Art</span>
                     </button>
                     <button onclick="setCat('coding')" id="card-coding" class="glass p-6 rounded-3xl text-left transition-all">
-                        <div class="w-10 h-10 bg-blue-500/10 rounded-xl mb-4 flex items-center justify-center text-blue-500"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg></div>
-                        <span class="font-bold text-sm">Code Hero</span>
+                        <span class="font-bold text-sm">Coding</span>
                     </button>
                     <button onclick="setCat('marketing')" id="card-marketing" class="glass p-6 rounded-3xl text-left transition-all">
-                        <div class="w-10 h-10 bg-pink-500/10 rounded-xl mb-4 flex items-center justify-center text-pink-500"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /></svg></div>
-                        <span class="font-bold text-sm">Ads Expert</span>
+                        <span class="font-bold text-sm">Marketing</span>
                     </button>
                 </div>
 
-                <!-- INPUT AREA -->
-                <div class="glass p-1 rounded-[2.5rem] shadow-2xl relative">
-                    <textarea id="userInput" placeholder="What's on your mind? Type it here..." class="w-full h-56 bg-transparent p-10 text-2xl outline-none resize-none placeholder:text-slate-800 font-medium"></textarea>
-                    <div class="p-6 bg-white/5 border-t border-white/5 flex justify-end items-center gap-4">
-                        <span class="text-xs text-slate-500 font-medium hidden md:block">Engineered by PromptMaster API</span>
-                        <button onclick="generate()" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-2xl font-black transition-all shadow-xl shadow-blue-600/20 active:scale-95">GENERATE Master ✨</button>
+                <div class="glass p-1 rounded-[2.5rem] relative">
+                    <textarea id="userInput" placeholder="Type your idea here..." class="w-full h-56 bg-transparent p-10 text-2xl outline-none resize-none"></textarea>
+                    <div class="p-6 border-t border-white/5 flex justify-end">
+                        <button onclick="generate()" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-2xl font-black transition-all active:scale-95">GENERATE ✨</button>
                     </div>
                 </div>
 
-                <!-- RESULT SECTION -->
-                <div id="resultBox" class="hidden fade-in bg-blue-600/5 border border-blue-500/20 p-10 rounded-[3rem] shadow-2xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500">Engineered Result</span>
-                        <button onclick="copyText()" class="text-xs font-bold text-slate-300 hover:text-white transition uppercase">Copy to Clipboard</button>
-                    </div>
-                    <div id="output" class="text-xl text-slate-200 leading-relaxed font-medium italic"></div>
-                    
-                    <!-- AD INSIDE RESULT -->
-                    <div class="mt-8 pt-8 border-t border-white/5 flex justify-center">
-                         <div class="ad-container w-full min-h-[90px]">
-                            <!-- Banner Ad Code Again -->
-                            <iframe sandbox="allow-scripts allow-popups allow-same-origin" style="width:100%; height:90px; border:none;" srcdoc="
-                            <body style='margin:0; display:flex; justify-content:center; align-items:center;'>
-                                <script type='text/javascript'>atOptions = {'key' : 'fea6acbdcf0fdca6a97f3460a737e593','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};</script>
-                                <script type='text/javascript' src='https://www.highperformanceformat.com/fea6acbdcf0fdca6a97f3460a737e593/invoke.js'></script>
-                            </body>"></iframe>
-                         </div>
-                    </div>
+                <div id="resultBox" class="hidden bg-blue-600/5 border border-blue-500/20 p-10 rounded-[3rem]">
+                    <div id="output" class="text-xl text-slate-200 leading-relaxed italic mb-6"></div>
+                    <button onclick="copyText()" class="text-xs font-bold text-blue-500 uppercase tracking-widest">Copy Result</button>
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: SIDEBAR ADS -->
             <aside class="space-y-6">
-                <div class="ad-container h-[250px] w-full flex-col">
-                    <span class="text-[10px] text-slate-700 font-bold mb-2">SPONSORED</span>
-                    <!-- 300x250 Ad Here -->
-                    <iframe sandbox="allow-scripts allow-popups allow-same-origin" style="width:300px; height:250px; border:none;" srcdoc="
-                        <body style='margin:0; display:flex; justify-content:center;'>
-                            <script type='text/javascript'>atOptions = {'key' : 'fea6acbdcf0fdca6a97f3460a737e593','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};</script>
-                            <script type='text/javascript' src='https://www.highperformanceformat.com/fea6acbdcf0fdca6a97f3460a737e593/invoke.js'></script>
-                        </body>"></iframe>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem]">
-                    <h3 class="text-sm font-black mb-4 tracking-widest text-slate-500 uppercase">Recent Tools</h3>
-                    <div class="space-y-4">
-                        <div class="p-4 bg-white/5 rounded-2xl text-xs font-bold text-slate-400">#1 Image Upscaler</div>
-                        <div class="p-4 bg-white/5 rounded-2xl text-xs font-bold text-slate-400">#2 Text to Video</div>
-                        <div class="p-4 bg-white/5 rounded-2xl text-xs font-bold text-slate-400">#3 SEO Optimizer</div>
-                    </div>
-                </div>
-
                 <div class="ad-container h-[250px] w-full">
-                    <!-- Another Sidebar Ad -->
+                    <span class="text-[10px] text-slate-700 font-bold">SIDEBAR AD UNIT</span>
                 </div>
             </aside>
         </div>
-
-        <!-- SEO FOOTER CONTENT -->
-        <article class="mt-24 pt-16 border-t border-white/5 max-w-4xl text-slate-500 leading-relaxed space-y-4">
-            <h2 class="text-2xl font-black text-white italic tracking-tighter">Professional Prompt Engineering Made Free.</h2>
-            <p>Master the art of <b>AI interaction</b> with PromptMaster Pro. Our <b>AI prompt generator</b> transforms basic user intent into sophisticated, context-aware instructions that ChatGPT and Midjourney crave.</p>
-            <p>Using industry-standard frameworks like AIDA and Chain-of-Thought, we ensure your <b>AI art prompts</b> and <b>coding queries</b> result in zero-shot perfection. Best free tool for <b>professional AI prompt engineering</b>.</p>
-        </article>
     </main>
 
-    <footer class="py-12 px-6 text-center text-slate-700 text-[10px] font-bold tracking-[0.3em] uppercase">
-        © 2024 PromptMaster.pro / The Future of AI Interaction
-    </footer>
-
     <script>
-        // REPLACE WITH YOUR ADSTERRA DIRECT LINK
         const MY_DIRECT_LINK = "https://www.effectivegatecpm.com/hx9eqwb2?key=eca9ef1a642f0854c04b34a426523a34";
-
         let currentCat = 'chatgpt';
-        let userLimits = JSON.parse(localStorage.getItem('user_limits_v_native')) || {
-            date: new Date().toLocaleDateString(),
-            chatgpt: 0, midjourney: 0, coding: 0, marketing: 0
+        let userLimits = JSON.parse(localStorage.getItem('user_limits_verified')) || {
+            date: new Date().toLocaleDateString(), chatgpt: 0, midjourney: 0, coding: 0, marketing: 0
         };
 
         function setCat(cat) {
@@ -188,49 +120,31 @@
             updateUI();
         }
 
-        function updateUI() {
-            const rem = 10 - userLimits[currentCat];
-            document.getElementById('remCount').innerText = rem;
-        }
+        function updateUI() { document.getElementById('remCount').innerText = 10 - userLimits[currentCat]; }
 
         function generate() {
-            if(userLimits[currentCat] >= 10) {
-                document.getElementById('adModal').classList.remove('hidden');
-                return;
-            }
+            if(userLimits[currentCat] >= 10) { document.getElementById('adModal').classList.remove('hidden'); return; }
             const input = document.getElementById('userInput').value;
             if(!input) return;
 
-            let finalPrompt = "";
-            if(currentCat === 'midjourney') {
-                finalPrompt = `[ART-DIRECTION]: Hyper-realistic cinematic shot of ${input}. Style: f/1.8 aperture, 8k resolution, volumetric lighting, Unreal Engine 5 render, highly detailed textures --v 6.0 --ar 16:9`;
-            } else {
-                finalPrompt = `[SYSTEM ROLE]: Act as a world-class ${currentCat} expert. Task: ${input}. Framework: Provide a structured, technical, and optimized response with high creative fidelity.`;
-            }
-
-            document.getElementById('output').innerText = finalPrompt;
+            document.getElementById('output').innerText = `[EXPERT ${currentCat.toUpperCase()} ENGINEER]: ${input}. Optimize this with professional persona and technical constraints.`;
             document.getElementById('resultBox').classList.remove('hidden');
             
             userLimits[currentCat]++;
-            localStorage.setItem('user_limits_v_native', JSON.stringify(userLimits));
+            localStorage.setItem('user_limits_verified', JSON.stringify(userLimits));
             updateUI();
-            
-            window.scrollTo({ top: document.getElementById('resultBox').offsetTop - 100, behavior: 'smooth' });
         }
 
         function watchAdToUnlock() {
             window.open(MY_DIRECT_LINK, '_blank'); 
             userLimits[currentCat] = 0;
-            localStorage.setItem('user_limits_v_native', JSON.stringify(userLimits));
-            closeModal();
+            localStorage.setItem('user_limits_verified', JSON.stringify(userLimits));
+            document.getElementById('adModal').classList.add('hidden');
             updateUI();
         }
 
         function closeModal() { document.getElementById('adModal').classList.add('hidden'); }
-        function copyText() { navigator.clipboard.writeText(document.getElementById('output').innerText); alert("Prompt Copied!"); }
-        
-        // Initial Update
-        updateUI();
+        function copyText() { navigator.clipboard.writeText(document.getElementById('output').innerText); alert("Copied!"); }
     </script>
 </body>
 </html>
